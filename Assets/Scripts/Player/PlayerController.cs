@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void HealthControl()
     {
+        if(playerHealth <= 18)
         playerHealth += Time.deltaTime * 0.3f;
 
 
