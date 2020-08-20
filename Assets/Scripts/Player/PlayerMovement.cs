@@ -32,11 +32,25 @@ public class PlayerMovement : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
         Vector3 move = transform.right * horizontal + transform.forward * vertical;
 
+
         if (Input.GetKey(KeyCode.LeftShift))
-            speed = 20;
+        {
+            if (gameObject.GetComponent<PlayerController>().playerHealth < 9)
+                speed = 6;
+            else
+                speed = 20;
+        }
         else
-            speed = 10;
-            controller.Move(move * speed * Time.deltaTime);
+        {
+            if (gameObject.GetComponent<PlayerController>().playerHealth < 9)
+                speed = 3;
+            else
+                speed = 10;
+        }
+
+        print(gameObject.GetComponent<PlayerController>().playerHealth);
+
+        controller.Move(move * speed * Time.deltaTime);
 
         Gravity();
     }
@@ -70,13 +84,27 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                armPivotAnimator.speed = 2f;
-                footSteps.pitch = 2f;
+                if (gameObject.GetComponent<PlayerController>().playerHealth < 9)
+                {
+                }
+                else
+                {
+                    armPivotAnimator.speed = 2f;
+                    footSteps.pitch = 2f;
+                }
             }
             else
             {
-                armPivotAnimator.speed = 1f;
-                footSteps.pitch = 1f;
+                if (gameObject.GetComponent<PlayerController>().playerHealth < 9)
+                {
+                    armPivotAnimator.speed = 0.666f;
+                    footSteps.pitch = 0.666f;
+                }
+                else
+                {
+                    armPivotAnimator.speed = 1f;
+                    footSteps.pitch = 1f;
+                }
             }
 
             armPivotAnimator.SetTrigger("isWalking");
