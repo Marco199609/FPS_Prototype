@@ -6,12 +6,12 @@ public class WeaponController2 : MonoBehaviour
 {
     [SerializeField] Weapon currentWeapon;
 
-    Animator shootAnimator, gunSightAnimator;
+    Animator meshAnimator, parentAnimator;
     Transform spawnPoint;
     GameObject muzzleFlash;
     bool isAutomatic, reloading, shooting, sighting;
     int totalAmmo, currentAmmo;
-    float automaticFireRate;
+    float automaticFireRate, reloadTime;
     AudioSource shootSound, aimSound, clickSound;
 
     void SetVariables()
@@ -19,14 +19,16 @@ public class WeaponController2 : MonoBehaviour
         isAutomatic = currentWeapon.isAutomatic;
         currentAmmo = currentWeapon.currentAmmo;
 
+        if (reloadTime == 0)
+            reloadTime = currentWeapon.reloadTime;
         if (totalAmmo == 0)
             totalAmmo = currentWeapon.totalAmmo;
         if (automaticFireRate <= 0)
             automaticFireRate = currentWeapon.automaticFireRate;
-        if (shootAnimator == null)
-            shootAnimator = currentWeapon.shootAnimator;
-        if (gunSightAnimator == null)
-            gunSightAnimator = currentWeapon.gunSightAnimator;
+        if (meshAnimator == null)
+            meshAnimator = currentWeapon.meshAnimator;
+        if (parentAnimator == null)
+            parentAnimator = currentWeapon.parentAnimator;
         if(spawnPoint == null)
             spawnPoint = currentWeapon.spawnPoint;
         if(muzzleFlash == null)
@@ -46,7 +48,10 @@ public class WeaponController2 : MonoBehaviour
     void FixedUpdate()
     {
         SetVariables();
-        ShootWeapon();
+
+        if(!reloading)
+            ShootWeapon();
+
         ReloadWeapon();
         GunSight();
     }
@@ -58,7 +63,7 @@ public class WeaponController2 : MonoBehaviour
         {
             if (isAutomatic)
             {
-                shootAnimator.speed = 1 / (automaticFireRate * 10);
+                meshAnimator.speed = 1 / (automaticFireRate * 10);
 
                 automaticFireRate -= Time.fixedDeltaTime;
 
@@ -66,14 +71,14 @@ public class WeaponController2 : MonoBehaviour
                 {
                     if (currentAmmo > 0)
                     {
-                        shootAnimator.SetBool("Shooting", true);
+                        meshAnimator.SetBool("Shooting", true);
                         muzzleFlash.SetActive(true);
                         currentWeapon.currentAmmo--;
                         shootSound.Play();
                     }
                     else
                     {
-                        shootAnimator.SetBool("Shooting", false);
+                        meshAnimator.SetBool("Shooting", false);
                         muzzleFlash.SetActive(false);
                         print("Reload!");
                     }
@@ -86,11 +91,11 @@ public class WeaponController2 : MonoBehaviour
             }
             else
             {
-                shootAnimator.speed = 1;
+                meshAnimator.speed = 1;
 
                 if (currentAmmo > 0)
                 {
-                    shootAnimator.SetBool("Shooting", true);
+                    meshAnimator.SetBool("Shooting", true);
                     muzzleFlash.SetActive(true);
                     currentWeapon.currentAmmo--;
                     shootSound.Play();
@@ -103,7 +108,7 @@ public class WeaponController2 : MonoBehaviour
         }
         else
         {
-            shootAnimator.SetBool("Shooting", false);
+            meshAnimator.SetBool("Shooting", false);
             muzzleFlash.SetActive(false);
         }
     }
@@ -112,12 +117,12 @@ public class WeaponController2 : MonoBehaviour
     {
         if (sighting)
         {
-            gunSightAnimator.SetBool("GunSight", true);
+            parentAnimator.SetBool("GunAim", true);
             aimSound.pitch = 1;
         }
         else
         {
-            gunSightAnimator.SetBool("GunSight", false);
+            parentAnimator.SetBool("GunAim", false);
             aimSound.pitch = 0.8f;
         }
             
@@ -127,10 +132,26 @@ public class WeaponController2 : MonoBehaviour
     {
         if(reloading)
         {
-            if (currentAmmo < totalAmmo)
-                currentWeapon.currentAmmo++;
-            else
+            reloadTime -= Time.deltaTime;
+            meshAnimator.speed = 1;
+            meshAnimator.SetBool("Reloading", true);
+
+            if(reloadTime > currentWeapon.reloadTime - 0.1f)
+                if(!clickSound.isPlaying)
+                    clickSound.Play();
+
+            if (reloadTime <= 0)
+            {
+                if (currentAmmo < totalAmmo)
+                {
+                    currentWeapon.currentAmmo += (currentWeapon.totalAmmo - currentAmmo);
+                }
+                if (!clickSound.isPlaying)
+                    clickSound.Play();
+                meshAnimator.SetBool("Reloading", false);
+                reloadTime = currentWeapon.reloadTime;
                 reloading = false;
+            }
         }
     }
 
