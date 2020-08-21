@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public int totalAmmo, currentAmmo;
+    public int ammoCapacity, currentAmmo;
     public Animator meshAnimator, parentAnimator;
     public Transform spawnPoint;
     public GameObject muzzleFlash;
@@ -15,6 +15,6 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         transform.localPosition = initialOffset;
-        currentAmmo = totalAmmo;
+        currentAmmo = ammoCapacity;
     }
 }

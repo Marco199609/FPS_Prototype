@@ -9,7 +9,7 @@ public class WeaponReload : MonoBehaviour
     Weapon currentWeapon;
     Animator meshAnimator;
     WeaponSounds weaponSounds;
-    int totalAmmo, currentAmmo;
+    int ammoCapacity, availableAmmo, currentAmmo;
     float reloadTime;
     public bool reloading;
 
@@ -21,15 +21,16 @@ public class WeaponReload : MonoBehaviour
             currentWeapon = weaponController.currentWeapon;
         if (weaponSounds == null)
             weaponSounds = gameObject.GetComponent<WeaponSounds>();
-
+        if (ammoCapacity == 0)
+            ammoCapacity = currentWeapon.ammoCapacity;
         currentAmmo = currentWeapon.currentAmmo;
+        availableAmmo = weaponController.availableAmmo;
 
         if (reloadTime == 0)
             reloadTime = currentWeapon.reloadTime;
         if (meshAnimator == null)
             meshAnimator = currentWeapon.meshAnimator;
-        if (totalAmmo == 0)
-            totalAmmo = currentWeapon.totalAmmo;
+
     }
 
     private void FixedUpdate()
@@ -45,16 +46,25 @@ public class WeaponReload : MonoBehaviour
             reloadTime -= Time.deltaTime;
             meshAnimator.speed = 1;
             meshAnimator.SetBool("Reloading", true);
-
-
             ReloadAudio();
 
             if (reloadTime <= 0)
             {
-                if (currentAmmo < totalAmmo)
+                if (currentAmmo < ammoCapacity)
                 {
-                    currentWeapon.currentAmmo += (currentWeapon.totalAmmo - currentAmmo);
+                    if(availableAmmo > ammoCapacity)
+                    {
+                        weaponController.availableAmmo -= (currentWeapon.ammoCapacity - currentAmmo);
+                        currentWeapon.currentAmmo += (currentWeapon.ammoCapacity - currentAmmo);
+                    }
+                    else
+                    {
+                        currentWeapon.currentAmmo += availableAmmo;
+                        weaponController.availableAmmo = 0;
+                    }
+
                 }
+
 
                 meshAnimator.SetBool("Reloading", false);
                 reloadTime = currentWeapon.reloadTime;
@@ -63,18 +73,16 @@ public class WeaponReload : MonoBehaviour
         }
     }
 
-
-
     void ReloadAudio()
     {
         if (reloadTime < currentWeapon.clickSoundTime + 0.1f && reloadTime > currentWeapon.clickSoundTime)
-            if (!currentWeapon.clickSound.isPlaying)
+            if (!weaponSounds.clickSound.isPlaying)
                 weaponSounds.clickSound.Play();
         if (reloadTime < currentWeapon.magSoundTime + 0.1f && reloadTime > currentWeapon.magSoundTime)
-            if (!currentWeapon.magSlideSound.isPlaying)
+            if (!weaponSounds.magSlideSound.isPlaying)
                 weaponSounds.magSlideSound.Play();
         if (reloadTime < currentWeapon.reloadSoundTime + 0.1f && reloadTime > currentWeapon.reloadSoundTime)
-            if (!currentWeapon.reloadSound.isPlaying)
+            if (!weaponSounds.reloadSound.isPlaying)
                 weaponSounds.reloadSound.Play();
     }
 }

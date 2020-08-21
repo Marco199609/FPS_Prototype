@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponInputs : MonoBehaviour
 {
@@ -54,13 +55,19 @@ public class WeaponInputs : MonoBehaviour
             weaponSounds.aimSound.Play();
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             weaponSounds.clickSound.Play();
             if (currentWeapon.isAutomatic)
+            {
                 currentWeapon.isAutomatic = false;
+                weaponController.autoText.color = new Color(0.03003764f, 1, 0, 0.2f);
+            }
             else
+            {
                 currentWeapon.isAutomatic = true;
+                weaponController.autoText.color = new Color(0.03003764f, 1, 0, 1);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))

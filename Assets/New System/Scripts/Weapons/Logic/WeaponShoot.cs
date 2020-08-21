@@ -72,7 +72,9 @@ public class WeaponShoot : MonoBehaviour
                     {
                         meshAnimator.SetBool("Shooting", false);
                         muzzleFlash.GetComponent<ParticleSystem>().Stop();
-                        print("Reload!");
+
+                        if (!weaponSounds.clickSound.isPlaying)
+                            weaponSounds.clickSound.Play();
                     }
                     automaticFireRate = currentWeapon.automaticFireRate;
                 }
@@ -90,8 +92,10 @@ public class WeaponShoot : MonoBehaviour
                     ShootNow();
                 }
                 else
-                    print("Reload!");
-
+                {
+                    if (!weaponSounds.clickSound.isPlaying)
+                        weaponSounds.clickSound.Play();
+                }
                 shooting = false;
             }
         }
@@ -107,6 +111,8 @@ public class WeaponShoot : MonoBehaviour
         meshAnimator.SetBool("Shooting", true);
         muzzleFlash.GetComponent<ParticleSystem>().Play();
         currentWeapon.currentAmmo--;
+
+        weaponSounds.shootSound.pitch = Random.Range(0.9f, 1.2f);
         weaponSounds.shootSound.Play();
 
         if (Physics.Raycast(ray, out hit, 500))

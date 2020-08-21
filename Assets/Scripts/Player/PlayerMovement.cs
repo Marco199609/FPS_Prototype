@@ -48,8 +48,6 @@ public class PlayerMovement : MonoBehaviour
                 speed = 10;
         }
 
-        print(gameObject.GetComponent<PlayerController>().playerHealth);
-
         controller.Move(move * speed * Time.deltaTime);
 
         Gravity();
