@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public float playerHealth = 18;
 
 
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -74,7 +73,6 @@ public class PlayerController : MonoBehaviour
                 bloodSprites[i].SetActive(false);
             }
         }
-
 
         if (transparentBlood)
             bloodTransparencyIndex -= Time.deltaTime * 1.05f;

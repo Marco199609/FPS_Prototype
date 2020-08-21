@@ -98,4 +98,7 @@ public class WeaponController : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
             shootSound.Play();
     }
+
+
+
 }
