@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class WeaponSounds : MonoBehaviour
 {
-    WeaponController2 weaponController;
+    WeaponController weaponController;
     Weapon currentWeapon;
-    public AudioSource shootSound, aimSound, clickSound, magSlideSound, reloadSound;
+    public AudioSource shootSound, aimSound, clickSound, magSlideSound, reloadSound, changingSound;
 
     void SetVariables()
     {
         if (weaponController == null)
-            weaponController = gameObject.GetComponent<WeaponController2>();
-        if (currentWeapon == null)
+            weaponController = gameObject.GetComponent<WeaponController>();
+        if (currentWeapon == null || weaponController.weaponChanging)
             currentWeapon = weaponController.currentWeapon;
-        if (shootSound == null)
+        if (shootSound == null || weaponController.weaponChanging)
             shootSound = currentWeapon.shootSound;
-        if (aimSound == null)
+        if (aimSound == null || weaponController.weaponChanging)
             aimSound = currentWeapon.aimSound;
-        if (clickSound == null)
+        if (clickSound == null || weaponController.weaponChanging)
             clickSound = currentWeapon.clickSound;
-        if (magSlideSound == null)
+        if (magSlideSound == null || weaponController.weaponChanging)
             magSlideSound = currentWeapon.magSlideSound;
-        if (reloadSound == null)
+        if (reloadSound == null || weaponController.weaponChanging)
             reloadSound = currentWeapon.reloadSound;
+        if (changingSound == null)
+            changingSound = weaponController.changingSound;
     }
 
     void Update()

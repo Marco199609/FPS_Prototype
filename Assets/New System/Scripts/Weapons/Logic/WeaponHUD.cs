@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponHUD : MonoBehaviour
 {
-    WeaponController2 weaponController;
+    WeaponController weaponController;
     Weapon currentWeapon;
     WeaponReload weaponReload;
     float textTransparency;
@@ -13,23 +13,17 @@ public class WeaponHUD : MonoBehaviour
     void SetVariables()
     {
         if (weaponController == null)
-            weaponController = gameObject.GetComponent<WeaponController2>();
-        if (currentWeapon == null)
+            weaponController = gameObject.GetComponent<WeaponController>();
+        if (currentWeapon == null || weaponController.weaponChanging)
             currentWeapon = weaponController.currentWeapon;
         if (weaponReload == null)
             weaponReload = gameObject.GetComponent<WeaponReload>();
-        if (ammoCapacity == 0)
+        if (ammoCapacity == 0 || weaponController.weaponChanging)
             ammoCapacity = currentWeapon.ammoCapacity;
         currentAmmo = currentWeapon.currentAmmo;
-        availableAmmo = weaponController.availableAmmo;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        availableAmmo = currentWeapon.availableAmmo;
     }
 
-    // Update is called once per frame
     void Update()
     {
         SetVariables();
@@ -59,8 +53,14 @@ public class WeaponHUD : MonoBehaviour
             weaponController.reloadText.color = new Color(1, 0, 0, textTransparency);
         }
 
+
         if (currentAmmo <= ammoCapacity / 3 && availableAmmo != 0 || weaponReload.reloading)
         {
+            weaponController.reloadText.enabled = true;
+        }
+        else if (availableAmmo == 0 && currentAmmo == 0)
+        {
+            weaponController.reloadText.text = "No ammo";
             weaponController.reloadText.enabled = true;
         }
         else
@@ -72,7 +72,6 @@ public class WeaponHUD : MonoBehaviour
 
     }
 
-
     void AvailableAmmoText()
     {
         weaponController.availableAmmoText.text = currentAmmo + "/" + availableAmmo;
@@ -83,5 +82,4 @@ public class WeaponHUD : MonoBehaviour
             weaponController.availableAmmoText.color = new Color(0.3f, 1, 0, 1);
 
     }
-
 }

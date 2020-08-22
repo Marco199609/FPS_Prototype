@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class WeaponShoot : MonoBehaviour
 {
-    WeaponController2 weaponController;
+    WeaponController weaponController;
     Weapon currentWeapon;
     WeaponSounds weaponSounds;
-    Animator meshAnimator, parentAnimator;
+    WeaponReload weaponReload;
+    [SerializeField]Animator meshAnimator, parentAnimator;
     GameObject muzzleFlash, bulletImpactPrefab, crossHair;
     Transform spawnPoint;
     RaycastHit hit;
@@ -19,29 +20,29 @@ public class WeaponShoot : MonoBehaviour
     void SetVariables()
     {
         if (weaponController == null)
-            weaponController = gameObject.GetComponent<WeaponController2>();
-        if (currentWeapon == null)
+            weaponController = gameObject.GetComponent<WeaponController>();
+        if (currentWeapon == null || weaponController.weaponChanging)
             currentWeapon = weaponController.currentWeapon;
         if (weaponSounds == null)
             weaponSounds = gameObject.GetComponent<WeaponSounds>();
+        if (weaponReload == null)
+            weaponReload = gameObject.GetComponent<WeaponReload>();
 
         isAutomatic = currentWeapon.isAutomatic;
         currentAmmo = currentWeapon.currentAmmo;
 
-        if (meshAnimator == null)
+        if (meshAnimator == null || weaponController.weaponChanging)
             meshAnimator = currentWeapon.meshAnimator;
-        if (parentAnimator == null)
+        if (parentAnimator == null || weaponController.weaponChanging)
             parentAnimator = currentWeapon.parentAnimator;
         if (isAutomatic && automaticFireRate <= 0)
             automaticFireRate = currentWeapon.automaticFireRate;
-        if (muzzleFlash == null)
+        if (muzzleFlash == null || weaponController.weaponChanging)
             muzzleFlash = currentWeapon.muzzleFlash;
-        if (spawnPoint == null)
+        if (spawnPoint == null || weaponController.weaponChanging)
             spawnPoint = currentWeapon.spawnPoint;
         if (bulletImpactPrefab == null)
             bulletImpactPrefab = weaponController.bulletImpactPrefab;
-        if (crossHair == null)
-            crossHair = weaponController.crossHair;
     }
 
     private void FixedUpdate()
@@ -64,11 +65,11 @@ public class WeaponShoot : MonoBehaviour
 
                 if (automaticFireRate <= 0)
                 {
-                    if (currentAmmo > 0)
+                    if (currentAmmo > 0 && !weaponReload.reloading)
                     {
                         ShootNow();
                     }
-                    else
+                    else if(!weaponReload.reloading)
                     {
                         meshAnimator.SetBool("Shooting", false);
                         muzzleFlash.GetComponent<ParticleSystem>().Stop();
@@ -87,11 +88,11 @@ public class WeaponShoot : MonoBehaviour
             {
                 meshAnimator.speed = 2;
 
-                if (currentAmmo > 0)
+                if (currentAmmo > 0 && !weaponReload.reloading)
                 {
                     ShootNow();
                 }
-                else
+                else if(!weaponReload.reloading)
                 {
                     if (!weaponSounds.clickSound.isPlaying)
                         weaponSounds.clickSound.Play();
@@ -134,13 +135,11 @@ public class WeaponShoot : MonoBehaviour
         {
             parentAnimator.SetBool("GunAim", true);
             weaponSounds.aimSound.pitch = 1;
-            //crossHair.GetComponent<SpriteRenderer>().enabled = true;
         }
         else
         {
             parentAnimator.SetBool("GunAim", false);
             weaponSounds.aimSound.pitch = 0.8f;
-            //crossHair.GetComponent<SpriteRenderer>().enabled = false;
         }
 
     }

@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class WeaponReload : MonoBehaviour
 {
-    WeaponController2 weaponController;
+    WeaponController weaponController;
     Weapon currentWeapon;
     Animator meshAnimator;
     WeaponSounds weaponSounds;
@@ -16,19 +16,19 @@ public class WeaponReload : MonoBehaviour
     void SetVariables()
     {
         if(weaponController == null)
-            weaponController = gameObject.GetComponent<WeaponController2>();
-        if (currentWeapon == null)
+            weaponController = gameObject.GetComponent<WeaponController>();
+        if (currentWeapon == null || weaponController.weaponChanging)
             currentWeapon = weaponController.currentWeapon;
         if (weaponSounds == null)
             weaponSounds = gameObject.GetComponent<WeaponSounds>();
         if (ammoCapacity == 0)
             ammoCapacity = currentWeapon.ammoCapacity;
         currentAmmo = currentWeapon.currentAmmo;
-        availableAmmo = weaponController.availableAmmo;
+        availableAmmo = currentWeapon.availableAmmo;
 
-        if (reloadTime == 0)
+        if (reloadTime == 0 || weaponController.weaponChanging)
             reloadTime = currentWeapon.reloadTime;
-        if (meshAnimator == null)
+        if (meshAnimator == null || weaponController.weaponChanging)
             meshAnimator = currentWeapon.meshAnimator;
 
     }
@@ -54,23 +54,24 @@ public class WeaponReload : MonoBehaviour
                 {
                     if(availableAmmo > ammoCapacity)
                     {
-                        weaponController.availableAmmo -= (currentWeapon.ammoCapacity - currentAmmo);
+                        currentWeapon.availableAmmo -= (currentWeapon.ammoCapacity - currentAmmo);
                         currentWeapon.currentAmmo += (currentWeapon.ammoCapacity - currentAmmo);
                     }
                     else
                     {
                         currentWeapon.currentAmmo += availableAmmo;
-                        weaponController.availableAmmo = 0;
+                        currentWeapon.availableAmmo = 0;
                     }
 
                 }
 
-
-                meshAnimator.SetBool("Reloading", false);
                 reloadTime = currentWeapon.reloadTime;
                 reloading = false;
             }
         }
+        else
+            meshAnimator.SetBool("Reloading", false);
+
     }
 
     void ReloadAudio()

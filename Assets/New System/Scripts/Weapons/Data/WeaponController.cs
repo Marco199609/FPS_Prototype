@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WeaponController2 : MonoBehaviour
+public class WeaponController : MonoBehaviour
 {
     public GameObject[] weaponPrefabs;
     public Weapon currentWeapon;
     public Transform weaponHolder;
     public GameObject bulletImpactPrefab;
-    public GameObject crossHair;
     public Text autoText, reloadText, availableAmmoText;
-    public int availableAmmo;
+    public bool weaponChanging;
+    public AudioSource changingSound;
     WeaponShoot weaponShoot;
     WeaponReload weaponReload;
     WeaponInputs weaponInputs;
@@ -19,7 +19,7 @@ public class WeaponController2 : MonoBehaviour
     WeaponChange weaponChange;
     WeaponHUD weaponHUD;
 
-    private void Start()
+    private void Awake()
     {
         weaponShoot = gameObject.AddComponent<WeaponShoot>();
         weaponReload = gameObject.AddComponent<WeaponReload>();

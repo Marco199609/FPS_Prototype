@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FxTemporaire
   - Turret
+  - WeaponController
   layers:
   - Default
   - TransparentFX
