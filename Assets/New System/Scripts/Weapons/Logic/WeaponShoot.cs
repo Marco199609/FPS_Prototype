@@ -8,13 +8,13 @@ public class WeaponShoot : MonoBehaviour
     Weapon currentWeapon;
     WeaponSounds weaponSounds;
     WeaponReload weaponReload;
-    [SerializeField]Animator meshAnimator, parentAnimator;
+    Animator meshAnimator;
     GameObject muzzleFlash, bulletImpactPrefab, crossHair;
-    Transform spawnPoint;
+    Transform aimPoint;
     RaycastHit hit;
-    Ray ray;
-    public bool shooting, isAutomatic, aiming;
-    float automaticFireRate;
+    public Ray shootRay;    //Set in WeaponAim
+    public bool shooting, autoModeOn, isAutoWeapon;
+    float automaticFireRate, aimTime = 0.3f;
     int currentAmmo;
 
     void SetVariables()
@@ -28,19 +28,20 @@ public class WeaponShoot : MonoBehaviour
         if (weaponReload == null)
             weaponReload = gameObject.GetComponent<WeaponReload>();
 
-        isAutomatic = currentWeapon.isAutomatic;
+        autoModeOn = currentWeapon.autoModeOn;
         currentAmmo = currentWeapon.currentAmmo;
+
+        if (weaponController.weaponChanging)
+            isAutoWeapon = currentWeapon.isAutoWeapon;
 
         if (meshAnimator == null || weaponController.weaponChanging)
             meshAnimator = currentWeapon.meshAnimator;
-        if (parentAnimator == null || weaponController.weaponChanging)
-            parentAnimator = currentWeapon.parentAnimator;
-        if (isAutomatic && automaticFireRate <= 0)
+        if (autoModeOn && automaticFireRate <= 0)
             automaticFireRate = currentWeapon.automaticFireRate;
         if (muzzleFlash == null || weaponController.weaponChanging)
             muzzleFlash = currentWeapon.muzzleFlash;
-        if (spawnPoint == null || weaponController.weaponChanging)
-            spawnPoint = currentWeapon.spawnPoint;
+        if (aimPoint == null || weaponController.weaponChanging)
+            aimPoint = currentWeapon.aimPoint;
         if (bulletImpactPrefab == null)
             bulletImpactPrefab = weaponController.bulletImpactPrefab;
     }
@@ -49,20 +50,18 @@ public class WeaponShoot : MonoBehaviour
     {
         SetVariables();
         ShootWeapon();
-        WeaponAim();
     }
+
 
     void ShootWeapon()
     {
         if (shooting)
         {
-            ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
-
-            if (isAutomatic)
+            if (autoModeOn && isAutoWeapon)
             {
                 meshAnimator.speed = 1 / (automaticFireRate * 10);
-                automaticFireRate -= Time.fixedDeltaTime;
 
+                automaticFireRate -= Time.fixedDeltaTime;
                 if (automaticFireRate <= 0)
                 {
                     if (currentAmmo > 0 && !weaponReload.reloading)
@@ -109,14 +108,13 @@ public class WeaponShoot : MonoBehaviour
 
     void ShootNow()
     {
-        meshAnimator.SetBool("Shooting", true);
         muzzleFlash.GetComponent<ParticleSystem>().Play();
         currentWeapon.currentAmmo--;
 
         weaponSounds.shootSound.pitch = Random.Range(0.9f, 1.2f);
         weaponSounds.shootSound.Play();
 
-        if (Physics.Raycast(ray, out hit, 500))
+        if (Physics.Raycast(shootRay, out hit, 500))
         {
             GameObject bulletImpact = Instantiate(bulletImpactPrefab, hit.point, hit.collider.transform.localRotation);
             bulletImpact.transform.SetParent(hit.collider.transform);
@@ -124,23 +122,21 @@ public class WeaponShoot : MonoBehaviour
 
             if (hit.collider.tag == "Turret")
             {
-                hit.collider.GetComponentInParent<Turret>().turretHealth -= 10;
+                hit.collider.GetComponentInParent<Turret>().turretHealth -= currentWeapon.damage;
+
+                if(hit.collider.GetComponentInParent<Turret>().turretHealth <= 0)
+                {
+                    weaponController.killEnemiesAmmo--;
+
+                    if (weaponController.killEnemiesAmmo <= 0)
+                    {
+                        Instantiate(weaponController.magPrefab, new Vector3(hit.collider.transform.position.x, 0, hit.collider.transform.position.z), Quaternion.identity);
+                        weaponController.killEnemiesAmmo = Random.Range(5, 10);
+                    }
+
+                }
             }
         }
-    }
-
-    void WeaponAim()
-    {
-        if (aiming)
-        {
-            parentAnimator.SetBool("GunAim", true);
-            weaponSounds.aimSound.pitch = 1;
-        }
-        else
-        {
-            parentAnimator.SetBool("GunAim", false);
-            weaponSounds.aimSound.pitch = 0.8f;
-        }
-
+        meshAnimator.SetBool("Shooting", true);
     }
 }

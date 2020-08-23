@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class WeaponHUD : MonoBehaviour
@@ -29,6 +30,7 @@ public class WeaponHUD : MonoBehaviour
         SetVariables();
         ReloadText();
         AvailableAmmoText();
+        AutoMode();
     }
 
     void ReloadText()
@@ -80,6 +82,26 @@ public class WeaponHUD : MonoBehaviour
             weaponController.availableAmmoText.color = new Color(1, 0, 0, textTransparency);
         else
             weaponController.availableAmmoText.color = new Color(0.3f, 1, 0, 1);
+
+    }
+
+
+    void AutoMode()
+    {
+        if (!currentWeapon.isAutoWeapon)
+        {
+            weaponController.autoText.text = "No Auto";
+            weaponController.autoText.color = new Color(1, 0, 0, 0.5f);
+        }
+        else
+        {
+            weaponController.autoText.text = "Auto";
+
+            if (currentWeapon.autoModeOn)
+                weaponController.autoText.color = new Color(0.03003764f, 1, 0, 1);
+            else
+                weaponController.autoText.color = new Color(0.03003764f, 1, 0, 0.3f);
+        }
 
     }
 }

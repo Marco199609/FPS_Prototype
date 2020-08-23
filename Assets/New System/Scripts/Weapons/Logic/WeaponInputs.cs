@@ -11,6 +11,7 @@ public class WeaponInputs : MonoBehaviour
     WeaponReload weaponReload;
     WeaponSounds weaponSounds;
     WeaponChange weaponChange;
+    WeaponAim weaponAim;
 
     void SetVariables()
     {
@@ -26,6 +27,8 @@ public class WeaponInputs : MonoBehaviour
             weaponSounds = gameObject.GetComponent<WeaponSounds>();
         if (weaponChange == null || weaponController.weaponChanging)
             weaponChange = gameObject.GetComponent<WeaponChange>();
+        if (weaponAim == null)
+            weaponAim = gameObject.GetComponent<WeaponAim>();
     }
 
     private void Update()
@@ -34,14 +37,30 @@ public class WeaponInputs : MonoBehaviour
         InputControl();
     }
 
+
+
     void InputControl()
     {
         if (Input.GetMouseButtonDown(0))
             weaponShoot.shooting = true;
 
         if (Input.GetMouseButtonUp(0))
-            if (currentWeapon.isAutomatic)
+            if (currentWeapon.autoModeOn)
                 weaponShoot.shooting = false;
+
+
+
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            weaponAim.aiming = true;
+            weaponSounds.aimSound.Play();
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            weaponAim.aiming = false;
+            weaponSounds.aimSound.Play();
+        }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -52,30 +71,15 @@ public class WeaponInputs : MonoBehaviour
         }
 
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            weaponShoot.aiming = true;
-            weaponSounds.aimSound.Play();
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            weaponShoot.aiming = false;
-            weaponSounds.aimSound.Play();
-        }
+
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             weaponSounds.clickSound.Play();
-            if (currentWeapon.isAutomatic)
-            {
-                currentWeapon.isAutomatic = false;
-                weaponController.autoText.color = new Color(0.03003764f, 1, 0, 0.2f);
-            }
+            if (currentWeapon.autoModeOn)
+                currentWeapon.autoModeOn = false;
             else
-            {
-                currentWeapon.isAutomatic = true;
-                weaponController.autoText.color = new Color(0.03003764f, 1, 0, 1);
-            }
+                currentWeapon.autoModeOn = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4))

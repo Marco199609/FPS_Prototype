@@ -17,9 +17,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        HealthControl();
+    }
+
+
+    private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            if(torch.activeInHierarchy)
+            if (torch.activeInHierarchy)
             {
                 torch.SetActive(false);
             }
@@ -28,9 +35,7 @@ public class PlayerController : MonoBehaviour
                 torch.SetActive(true);
             }
         }
-        HealthControl();
     }
-
 
     void HealthControl()
     {

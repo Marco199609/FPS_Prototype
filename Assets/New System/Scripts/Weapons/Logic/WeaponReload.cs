@@ -46,7 +46,8 @@ public class WeaponReload : MonoBehaviour
             reloadTime -= Time.deltaTime;
             meshAnimator.speed = 1;
             meshAnimator.SetBool("Reloading", true);
-            ReloadAudio();
+
+            
 
             if (reloadTime <= 0)
             {
@@ -68,22 +69,11 @@ public class WeaponReload : MonoBehaviour
                 reloadTime = currentWeapon.reloadTime;
                 reloading = false;
             }
+
+           if (!weaponSounds.reloadSound.isPlaying)
+                weaponSounds.reloadSound.Play();
         }
         else
             meshAnimator.SetBool("Reloading", false);
-
-    }
-
-    void ReloadAudio()
-    {
-        if (reloadTime < currentWeapon.clickSoundTime + 0.1f && reloadTime > currentWeapon.clickSoundTime)
-            if (!weaponSounds.clickSound.isPlaying)
-                weaponSounds.clickSound.Play();
-        if (reloadTime < currentWeapon.magSoundTime + 0.1f && reloadTime > currentWeapon.magSoundTime)
-            if (!weaponSounds.magSlideSound.isPlaying)
-                weaponSounds.magSlideSound.Play();
-        if (reloadTime < currentWeapon.reloadSoundTime + 0.1f && reloadTime > currentWeapon.reloadSoundTime)
-            if (!weaponSounds.reloadSound.isPlaying)
-                weaponSounds.reloadSound.Play();
     }
 }

@@ -5448,7 +5448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1654778341}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: AimPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5462,7 +5462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654778340}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.137, y: 0.09, z: 0.014}
+  m_LocalPosition: {x: -0.0299, y: 0.10262, z: 0.01452}
   m_LocalScale: {x: 0.83333313, y: 0.83333325, z: 0.83333313}
   m_Children: []
   m_Father: {fileID: 166571708179384280}
@@ -7049,18 +7049,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoCapacity: 15
   currentAmmo: 0
-  availableAmmo: 75
+  availableAmmo: 45
+  damage: 30
   meshAnimator: {fileID: 6286847026294895861}
   parentAnimator: {fileID: 2148825299031800560}
-  spawnPoint: {fileID: 1654778341}
+  aimPoint: {fileID: 1654778341}
   muzzleFlash: {fileID: 1364899098}
-  isAutomatic: 0
+  autoModeOn: 0
+  isAutoWeapon: 1
   automaticFireRate: 0.06
+  rireRate: 0
   reloadTime: 1.3
-  clickSoundTime: 1.1
-  magSoundTime: 0.7
-  reloadSoundTime: 0.25
-  damage: 1.5
   shootSound: {fileID: 966581987}
   aimSound: {fileID: 1607376162}
   clickSound: {fileID: 1183783757}

@@ -343,7 +343,7 @@ MonoBehaviour:
   animator: {fileID: 6660458238358744405}
   barrelAnimator: {fileID: 0}
   turretSound: {fileID: 2136474985}
-  turretHealth: 30
+  turretHealth: 100
 --- !u!82 &2136474985
 AudioSource:
   m_ObjectHideFlags: 0

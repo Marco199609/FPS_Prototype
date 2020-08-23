@@ -8,9 +8,7 @@ public class MagLogic : MonoBehaviour
     GameObject mesh;
     WeaponController weaponController;
     Weapon currentWeapon;
-    GameObject player;
-    AudioSource magSound;
-
+    GameObject player, magSound;
 
     void SetVariables()
     {
@@ -26,13 +24,31 @@ public class MagLogic : MonoBehaviour
             currentWeapon = weaponController.currentWeapon;
         if (magSound == null)
             magSound = magData.magSound;
+
+        if(magData.randomCapacity == 0)
+        {
+            magData.randomCapacity = Random.Range(1, 4);
+            magData.magCapacity = magData.randomCapacity * 5;
+        }
     }
 
-
-    void Update()
+    void FixedUpdate()
     {
         SetVariables();
+
+
+
         mesh.transform.Rotate(magData.rotateAngle);
+
+        if(magData.enableTimer > 0)
+        {
+            magData.enableTimer -= Time.deltaTime;
+        }
+        else
+        {
+            magSound.SetActive(true);
+            mesh.SetActive(true);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,8 +56,8 @@ public class MagLogic : MonoBehaviour
         if(other.tag == player.tag)
         {
             currentWeapon.availableAmmo += magData.magCapacity;
-            if (!magSound.isPlaying)
-                magSound.Play();
+            if (!magSound.GetComponent<AudioSource>().isPlaying)
+                magSound.GetComponent<AudioSource>().Play();
             Destroy(gameObject, 0.5f);
         }
     }

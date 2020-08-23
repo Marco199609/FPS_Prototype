@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public int ammoCapacity, currentAmmo, availableAmmo;
+    public int ammoCapacity, currentAmmo, availableAmmo, damage;
     public Animator meshAnimator, parentAnimator;
-    public Transform spawnPoint;
+    public Transform aimPoint;
     public GameObject muzzleFlash;
-    public bool isAutomatic;
-    public float automaticFireRate = 0.07f, reloadTime = 1.3f, clickSoundTime, magSoundTime, reloadSoundTime, damage;
+    public bool autoModeOn, isAutoWeapon;
+    public float automaticFireRate = 0.07f, rireRate, reloadTime = 1.3f;
     public AudioSource shootSound, aimSound, clickSound, magSlideSound, reloadSound;
     public Vector3 initialOffset, initialRotation;
     void Start()

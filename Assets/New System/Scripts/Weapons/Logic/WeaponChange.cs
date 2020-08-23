@@ -7,7 +7,7 @@ public class WeaponChange : MonoBehaviour
     WeaponController weaponController;
     Weapon currentWeapon;
     WeaponSounds weaponSounds;
-    public int weaponIndex = 2;
+    public int weaponIndex = 0;
     float weaponChangeTimer = 0.1f;
     [SerializeField] GameObject[] weaponPrefabs, weaponsAvailable;
     Transform weaponHolder;
@@ -16,14 +16,15 @@ public class WeaponChange : MonoBehaviour
     {
         if (weaponController == null)
             weaponController = gameObject.GetComponent<WeaponController>();
-        if (currentWeapon == null)
-            currentWeapon = weaponController.currentWeapon;
+
         if(weaponPrefabs == null)
             weaponPrefabs = weaponController.weaponPrefabs;
         if (weaponHolder == null)
             weaponHolder = weaponController.weaponHolder;
         if (weaponSounds == null)
             weaponSounds = gameObject.GetComponent<WeaponSounds>();
+
+
         if(weaponsAvailable == null)
         {
             weaponsAvailable = new GameObject[weaponPrefabs.Length];
@@ -34,12 +35,18 @@ public class WeaponChange : MonoBehaviour
                 weaponsAvailable[i].transform.localPosition = weaponsAvailable[i].GetComponent<Weapon>().initialOffset;
                 weaponsAvailable[i].transform.localRotation = Quaternion.Euler(weaponsAvailable[i].GetComponent<Weapon>().initialOffset);
                 weaponsAvailable[i].SetActive(false);
-
-                if (i == weaponIndex)
-                    weaponController.weaponChanging = true;
-
             }
         }
+
+        if (currentWeapon == null)
+        {
+            weaponController.currentWeapon = weaponsAvailable[weaponIndex].GetComponent<Weapon>();
+            currentWeapon = weaponController.currentWeapon;
+            weaponController.weaponChanging = true;
+        }
+
+        if (weaponIndex >= weaponsAvailable.Length)
+            weaponIndex = (int) weaponsAvailable.Length - 1;
     }
 
     void FixedUpdate()
@@ -52,7 +59,7 @@ public class WeaponChange : MonoBehaviour
     {
         if(weaponController.weaponChanging)
         {
-
+            weaponController.currentWeapon = weaponsAvailable[weaponIndex].GetComponent<Weapon>();
 
             for (int i = 0; i < weaponsAvailable.Length; i++)
             {
@@ -74,7 +81,7 @@ public class WeaponChange : MonoBehaviour
                 }
             }
 
-            weaponController.currentWeapon = weaponsAvailable[weaponIndex].GetComponent<Weapon>();
+
 
 
             weaponChangeTimer -= Time.deltaTime;
@@ -84,10 +91,7 @@ public class WeaponChange : MonoBehaviour
                 weaponController.currentWeapon = weaponsAvailable[weaponIndex].GetComponent<Weapon>();
                 weaponController.weaponChanging = false;
 
-
             }
-
-
         }
     }
 }
