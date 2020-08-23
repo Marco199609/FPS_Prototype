@@ -1771,7 +1771,7 @@ MonoBehaviour:
   ammoCapacity: 6
   currentAmmo: 6
   availableAmmo: 18
-  damage: 40
+  damage: 50
   meshAnimator: {fileID: 2109566078}
   parentAnimator: {fileID: 981283359}
   aimPoint: {fileID: 2135031759}
