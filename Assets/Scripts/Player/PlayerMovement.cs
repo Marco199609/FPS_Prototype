@@ -30,8 +30,9 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        Vector3 move = transform.right * horizontal + transform.forward * vertical;
 
+        Vector3 move = transform.right * horizontal + transform.forward * vertical;
+        move = Vector3.ClampMagnitude(move, 1);                                         //Does not let diagonal movement to be faster
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
