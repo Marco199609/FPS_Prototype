@@ -1842,6 +1842,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 196263865}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &208106051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5460941137253238595, guid: 178601070b9ba484abe9101deec37379,
+    type: 3}
+  m_PrefabInstance: {fileID: 5460941135399010563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &208106052
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208106051}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &213638938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8074113148109036528, guid: 4a1e28136a5ef4d4dafc618b82de7443,
@@ -11425,6 +11450,7 @@ MonoBehaviour:
   - {fileID: 7318280231460084630, guid: e0e006d52d2e0794c9b72092dbe5d636, type: 3}
   - {fileID: 2885911492706305031, guid: 237b8773a544b764d83e8b7afe8d7ca2, type: 3}
   - {fileID: 6078303786950217658, guid: 7b0ba1837d49ca84bacd7482922bb76f, type: 3}
+  - {fileID: 2447557467404676681, guid: 86c8f5538053bd249a099bf2a35137cf, type: 3}
   currentWeapon: {fileID: 0}
   weaponHolder: {fileID: 1938474561}
   bulletImpactPrefab: {fileID: 7866094512498877811, guid: f45083d501b55904eb84ab91a461d777,
@@ -26509,7 +26535,7 @@ PrefabInstance:
     - target: {fileID: 5460941137408403534, guid: 178601070b9ba484abe9101deec37379,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5460941137408403537, guid: 178601070b9ba484abe9101deec37379,
         type: 3}

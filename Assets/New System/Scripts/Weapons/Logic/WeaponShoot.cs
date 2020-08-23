@@ -37,7 +37,7 @@ public class WeaponShoot : MonoBehaviour
         if (meshAnimator == null || weaponController.weaponChanging)
             meshAnimator = currentWeapon.meshAnimator;
         if (autoModeOn && automaticFireRate <= 0)
-            automaticFireRate = currentWeapon.automaticFireRate;
+            automaticFireRate = 1 / (currentWeapon.fireRate / 60); //calculates rate per second
         if (muzzleFlash == null || weaponController.weaponChanging)
             muzzleFlash = currentWeapon.muzzleFlash;
         if (aimPoint == null || weaponController.weaponChanging)
@@ -76,7 +76,7 @@ public class WeaponShoot : MonoBehaviour
                         if (!weaponSounds.clickSound.isPlaying)
                             weaponSounds.clickSound.Play();
                     }
-                    automaticFireRate = currentWeapon.automaticFireRate;
+                    automaticFireRate = 1 / (currentWeapon.fireRate / 60);     //calculates rate per second
                 }
                 else
                 {

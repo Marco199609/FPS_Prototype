@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     public Transform aimPoint;
     public GameObject muzzleFlash;
     public bool autoModeOn, isAutoWeapon;
-    public float automaticFireRate = 0.07f, rireRate, reloadTime = 1.3f;
+    public float fireRate, reloadTime = 1.3f;
     public AudioSource shootSound, aimSound, clickSound, magSlideSound, reloadSound;
     public Vector3 initialOffset, initialRotation;
     void Start()

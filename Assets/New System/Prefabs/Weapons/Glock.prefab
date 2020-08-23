@@ -5524,7 +5524,7 @@ Transform:
   m_GameObject: {fileID: 163324638564034744}
   m_LocalRotation: {x: 0.7024086, y: -0.08139357, z: -0.70240474, w: -0.081393115}
   m_LocalPosition: {x: 0.009606134, y: 0.03097575, z: 0.000000004323508}
-  m_LocalScale: {x: 1.0000045, y: 1.0000002, z: 1.0000001}
+  m_LocalScale: {x: 1.0000045, y: 1.6884004, z: 1.0000001}
   m_Children:
   - {fileID: 166324932817922302}
   m_Father: {fileID: 166776588937696692}
@@ -7013,7 +7013,7 @@ GameObject:
   - component: {fileID: 1233996151}
   - component: {fileID: 2148825299031800560}
   m_Layer: 0
-  m_Name: Glock19
+  m_Name: Glock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7047,8 +7047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e564b1184918f4d92a3724342a0c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoCapacity: 15
-  currentAmmo: 0
+  ammoCapacity: 33
+  currentAmmo: 33
   availableAmmo: 45
   damage: 30
   meshAnimator: {fileID: 6286847026294895861}
@@ -7057,8 +7057,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 1364899098}
   autoModeOn: 0
   isAutoWeapon: 1
-  automaticFireRate: 0.06
-  rireRate: 0
+  fireRate: 1200
   reloadTime: 1.3
   shootSound: {fileID: 966581987}
   aimSound: {fileID: 1607376162}

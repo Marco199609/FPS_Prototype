@@ -9,6 +9,7 @@ public class WeaponAim : MonoBehaviour
     Animator parentAnimator;
     WeaponShoot weaponShoot;
     WeaponSounds weaponSounds;
+    WeaponReload weaponReload;
     Transform aimPoint;
     Animator walkAnimator;
     public bool aiming;
@@ -29,6 +30,8 @@ public class WeaponAim : MonoBehaviour
             weaponSounds = gameObject.GetComponent<WeaponSounds>();
         if (weaponShoot == null || weaponController.weaponChanging)
             weaponShoot = gameObject.GetComponent<WeaponShoot>();
+        if (weaponReload == null || weaponController.weaponChanging)
+            weaponReload = gameObject.GetComponent<WeaponReload>();
         if (walkAnimator == null)
             walkAnimator = weaponController.walkAnimator;
     }
@@ -43,7 +46,7 @@ public class WeaponAim : MonoBehaviour
 
     void Aim()
     {
-        if (aiming)
+        if (aiming && !weaponReload.reloading)
         {
             if (camTime < 1)
                 camTime += Time.deltaTime * 6f;

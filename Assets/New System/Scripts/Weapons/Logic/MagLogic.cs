@@ -28,7 +28,15 @@ public class MagLogic : MonoBehaviour
         if(magData.randomCapacity == 0)
         {
             magData.randomCapacity = Random.Range(1, 4);
-            magData.magCapacity = magData.randomCapacity * 5;
+
+            if(magData.randomCapacity == 1)
+                magData.magCapacity = weaponController.currentWeapon.ammoCapacity / 2;
+            if (magData.randomCapacity == 2)
+                magData.magCapacity = weaponController.currentWeapon.ammoCapacity;
+            if (magData.randomCapacity == 2)
+                magData.magCapacity = weaponController.currentWeapon.ammoCapacity * 1.5f;
+            if (magData.randomCapacity == 4)
+                magData.magCapacity = weaponController.currentWeapon.ammoCapacity * 2;
         }
     }
 
@@ -55,7 +63,7 @@ public class MagLogic : MonoBehaviour
     {
         if(other.tag == player.tag)
         {
-            currentWeapon.availableAmmo += magData.magCapacity;
+            currentWeapon.availableAmmo += (int) magData.magCapacity;
             if (!magSound.GetComponent<AudioSource>().isPlaying)
                 magSound.GetComponent<AudioSource>().Play();
             Destroy(gameObject, 0.5f);

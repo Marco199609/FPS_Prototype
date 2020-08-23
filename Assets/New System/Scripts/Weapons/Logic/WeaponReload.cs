@@ -21,8 +21,10 @@ public class WeaponReload : MonoBehaviour
             currentWeapon = weaponController.currentWeapon;
         if (weaponSounds == null)
             weaponSounds = gameObject.GetComponent<WeaponSounds>();
-        if (ammoCapacity == 0)
+
+        if (ammoCapacity == 0 || weaponController.weaponChanging)
             ammoCapacity = currentWeapon.ammoCapacity;
+
         currentAmmo = currentWeapon.currentAmmo;
         availableAmmo = currentWeapon.availableAmmo;
 
