@@ -7049,8 +7049,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoCapacity: 33
   currentAmmo: 33
-  availableAmmo: 45
-  damage: 30
+  availableAmmo: 33
+  damage: 20
   meshAnimator: {fileID: 6286847026294895861}
   parentAnimator: {fileID: 2148825299031800560}
   aimPoint: {fileID: 1654778341}

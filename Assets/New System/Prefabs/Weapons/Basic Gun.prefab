@@ -6339,17 +6339,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoCapacity: 20
-  currentAmmo: 9
-  availableAmmo: 60
-  damage: 20
+  currentAmmo: 20
+  availableAmmo: 20
+  damage: 10
   meshAnimator: {fileID: 7318280232485908250}
   parentAnimator: {fileID: 7318280231460084619}
   aimPoint: {fileID: 9040663804185466340}
   muzzleFlash: {fileID: 5363370156577268663}
   autoModeOn: 0
   isAutoWeapon: 0
-  automaticFireRate: 0
-  rireRate: 0
+  fireRate: 0
   reloadTime: 1.3
   shootSound: {fileID: 1078694733282491061}
   aimSound: {fileID: 5641656124904220215}

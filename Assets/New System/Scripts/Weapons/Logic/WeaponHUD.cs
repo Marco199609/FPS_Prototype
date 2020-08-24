@@ -8,6 +8,7 @@ public class WeaponHUD : MonoBehaviour
     WeaponController weaponController;
     Weapon currentWeapon;
     WeaponReload weaponReload;
+    WeaponChange weaponChange;
     float textTransparency;
     bool transparentText;
     int currentAmmo, ammoCapacity, availableAmmo;
@@ -19,6 +20,8 @@ public class WeaponHUD : MonoBehaviour
             currentWeapon = weaponController.currentWeapon;
         if (weaponReload == null)
             weaponReload = gameObject.GetComponent<WeaponReload>();
+        if (weaponChange == null)
+            weaponChange = gameObject.GetComponent<WeaponChange>();
         if (ammoCapacity == 0 || weaponController.weaponChanging)
             ammoCapacity = currentWeapon.ammoCapacity;
         currentAmmo = currentWeapon.currentAmmo;
@@ -31,13 +34,14 @@ public class WeaponHUD : MonoBehaviour
         ReloadText();
         AvailableAmmoText();
         AutoMode();
+        ActiveWeaponHUD();
     }
 
     void ReloadText()
     {
         if (weaponReload.reloading && weaponController.reloadText.isActiveAndEnabled)
         {
-            weaponController.reloadText.color = new Color(0.3f, 1, 0, 1);
+            weaponController.reloadText.color = new Color(1, 1, 1, 1);
             weaponController.reloadText.text = "Reloading...";
         }
         else if (!weaponReload.reloading && weaponController.reloadText.isActiveAndEnabled)
@@ -79,29 +83,43 @@ public class WeaponHUD : MonoBehaviour
         weaponController.availableAmmoText.text = currentAmmo + "/" + availableAmmo;
 
         if (currentAmmo < ammoCapacity / 3 || availableAmmo < ammoCapacity)
+        {
             weaponController.availableAmmoText.color = new Color(1, 0, 0, textTransparency);
+            weaponController.availableAmmoSprite.GetComponent<SpriteRenderer>().color = weaponController.availableAmmoText.color;
+        }
         else
-            weaponController.availableAmmoText.color = new Color(0.3f, 1, 0, 1);
-
+        {
+            weaponController.availableAmmoText.color = new Color(1, 1, 1, 1);
+            weaponController.availableAmmoSprite.GetComponent<SpriteRenderer>().color = weaponController.availableAmmoText.color;
+        }
     }
-
 
     void AutoMode()
     {
         if (!currentWeapon.isAutoWeapon)
         {
-            weaponController.autoText.text = "No Auto";
             weaponController.autoText.color = new Color(1, 0, 0, 0.5f);
         }
         else
         {
-            weaponController.autoText.text = "Auto";
-
             if (currentWeapon.autoModeOn)
-                weaponController.autoText.color = new Color(0.03003764f, 1, 0, 1);
+                weaponController.autoText.color = new Color(1, 1, 1, 1);
             else
-                weaponController.autoText.color = new Color(0.03003764f, 1, 0, 0.3f);
+                weaponController.autoText.color = new Color(1, 1, 1, 0.5f);
         }
+    }
 
+    void ActiveWeaponHUD()
+    {
+        if(weaponController.weaponChanging)
+        {
+            for (int i = 0; i < weaponController.ActiveWeaponHUD.Length; i++)
+            {
+                if (i == weaponChange.weaponIndex)
+                    weaponController.ActiveWeaponHUD[i].SetActive(true);
+                else
+                    weaponController.ActiveWeaponHUD[i].SetActive(false);
+            }
+        }
     }
 }

@@ -5,23 +5,24 @@ using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour
 {
-    public GameObject[] weaponPrefabs;
+    public GameObject[] weaponPrefabs, ActiveWeaponHUD;
     public Weapon currentWeapon;
     public Transform weaponHolder;
-    public GameObject bulletImpactPrefab, player, magPrefab;
+    public GameObject bulletImpactPrefab, player, magPrefab, availableAmmoSprite;
     public Text autoText, reloadText, availableAmmoText;
     public bool weaponChanging;
     public AudioSource changingSound;
     public Animator walkAnimator;
     public int killEnemiesAmmo = 1;         //Amount of enemies to kill to recieve more ammo; used in WeaponShoot.ShootNow();
 
-    WeaponShoot weaponShoot;
-    WeaponAim weaponAim;
-    WeaponReload weaponReload;
-    WeaponInputs weaponInputs;
-    WeaponSounds weaponSounds;
-    WeaponChange weaponChange;
-    WeaponHUD weaponHUD;
+    [Header("Classes to be added")]
+    [SerializeField] WeaponShoot weaponShoot;
+    [SerializeField] WeaponAim weaponAim;
+    [SerializeField] WeaponReload weaponReload;
+    [SerializeField] WeaponInputs weaponInputs;
+    [SerializeField] WeaponSounds weaponSounds;
+    [SerializeField] WeaponChange weaponChange;
+    [SerializeField] WeaponHUD weaponHUD;
 
     private void Awake()
     {

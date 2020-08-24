@@ -279,7 +279,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 43b2d00467fb11b4ea9c0e2058582801, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -665,8 +665,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoCapacity: 30
   currentAmmo: 30
-  availableAmmo: 120
-  damage: 100
+  availableAmmo: 30
+  damage: 50
   meshAnimator: {fileID: 5344252163159743875}
   parentAnimator: {fileID: 6690936295017702192}
   aimPoint: {fileID: 1800492204}

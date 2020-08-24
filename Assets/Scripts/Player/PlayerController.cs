@@ -97,6 +97,6 @@ public class PlayerController : MonoBehaviour
 
 
 
-        healthText.text = "Health: " + (playerHealth * 5.555555555555556f).ToString("0");
+        healthText.text = (playerHealth * 5.555555555555556f).ToString("0");
     }
 }
