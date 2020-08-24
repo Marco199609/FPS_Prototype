@@ -14233,7 +14233,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617544972}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c56a3832a503cb4409ef5403104ba783, type: 3}
   m_Name: 
@@ -27358,7 +27358,7 @@ PrefabInstance:
     - target: {fileID: 5460941135921090792, guid: 178601070b9ba484abe9101deec37379,
         type: 3}
       propertyPath: m_Name
-      value: Arm Pivot
+      value: Walk Animator
       objectReference: {fileID: 0}
     - target: {fileID: 5460941135921090799, guid: 178601070b9ba484abe9101deec37379,
         type: 3}
