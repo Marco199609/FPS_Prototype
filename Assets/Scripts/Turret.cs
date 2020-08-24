@@ -62,7 +62,7 @@ public class Turret : MonoBehaviour
                 if (barrelExplosion != null)
                     barrelExplosion.SetActive(true);
 
-                hit.collider.GetComponent<PlayerController>().playerHealth -= Time.deltaTime * 2;
+                hit.collider.GetComponent<PlayerController>().playerHealth -= Time.deltaTime * 8;
             }
             else
             {
