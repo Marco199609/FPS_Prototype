@@ -7,7 +7,8 @@ public class PlayerRotation : MonoBehaviour
     PlayerController2 playerController;
     float mouseSensitivity;
     GameObject playerCamera;
-    float mouseX, mouseY, xRotation;
+    public float mouseX, mouseY;
+    float xRotation;
 
     void SetVariables()
     {
@@ -25,17 +26,18 @@ public class PlayerRotation : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         SetVariables();
+    }
+
+    void Update()
+    {
         MouseRotate();
     }
 
     void MouseRotate()
     {
-        mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -80, 80);
 

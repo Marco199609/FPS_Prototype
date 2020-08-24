@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
     PlayerController2 playerController;
     PlayerJump playerJump;
     PlayerMovement2 playerMovement;
+    PlayerRotation playerRotation;
 
     void SetVariables()
     {
@@ -14,19 +15,16 @@ public class PlayerInput : MonoBehaviour
             playerController = gameObject.GetComponent<PlayerController2>();
         if(playerJump == null)
             playerJump = gameObject.GetComponent<PlayerJump>();
-        if (playerMovement = null)
+        if (playerMovement == null)
             playerMovement = gameObject.GetComponent<PlayerMovement2>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        if (playerRotation == null)
+            playerRotation = gameObject.GetComponent<PlayerRotation>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        SetVariables();
+        Inputs();
     }
 
 
@@ -35,6 +33,10 @@ public class PlayerInput : MonoBehaviour
     {
         playerMovement.horizontal = Input.GetAxis("Horizontal");
         playerMovement.vertical = Input.GetAxis("Vertical");
+
+        playerRotation.mouseX = Input.GetAxis("Mouse X") * playerController.mouseSensitivity * Time.deltaTime;
+        playerRotation.mouseY = Input.GetAxis("Mouse Y") * playerController.mouseSensitivity * Time.deltaTime;
+
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
@@ -50,18 +52,23 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
-
-
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
             playerMovement.running = false;
             playerMovement.running = false;
         }
 
-
         if (Input.GetButtonDown("Jump"))
         {
             playerJump.jumping = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (playerController.torch.activeInHierarchy)
+                playerController.torch.SetActive(false);
+            else
+                playerController.torch.SetActive(true);
         }
     }
 }

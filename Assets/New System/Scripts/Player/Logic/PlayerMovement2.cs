@@ -21,18 +21,14 @@ public class PlayerMovement2 : MonoBehaviour
             characterController = playerController.characterController;
         if (speed == 0)
             speed = playerController.speed;
-
+        if(footSteps == null)
+            footSteps = playerController.footSteps;
 
         if (walkAnimator == null)
             walkAnimator = playerController.walkAnimator;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         SetVariables();
@@ -43,21 +39,19 @@ public class PlayerMovement2 : MonoBehaviour
 
     void Move()
     {
-
-
         Vector3 move = transform.right * horizontal + transform.forward * vertical;
         move = Vector3.ClampMagnitude(move, 1);                                         //Does not let diagonal movement to be faster
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (running)
         {
-            if (gameObject.GetComponent<PlayerController>().playerHealth < 9)
+            if (playerController.playerHealth < 9)
                 speed = 6;
             else
                 speed = 20;
         }
         else
         {
-            if (gameObject.GetComponent<PlayerController>().playerHealth < 9)
+            if (playerController.playerHealth < 9)
                 speed = 3;
             else
                 speed = 10;

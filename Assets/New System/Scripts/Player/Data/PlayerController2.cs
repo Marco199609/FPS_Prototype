@@ -18,13 +18,13 @@ public class PlayerController2 : MonoBehaviour
     public AudioSource footSteps;
 
 
-    public GameObject torch;
+    [Header("To be used in Player Health")]
     public GameObject[] bloodSprites;
-    public float bloodTransparencyIndex = 1;
     public AudioSource heartBeat;
     public Text healthText;
-    public bool transparentBlood;
     public float playerHealth = 18;
+
+    public GameObject torch;
 
 
 
