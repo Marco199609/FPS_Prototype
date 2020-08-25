@@ -114,7 +114,7 @@ public class WeaponShoot : MonoBehaviour
         weaponSounds.shootSound.pitch = Random.Range(0.9f, 1.2f);
         weaponSounds.shootSound.Play();
 
-        if (Physics.Raycast(shootRay, out hit, 500))
+        if (Physics.Raycast(shootRay, out hit, 50))
         {
             GameObject bulletImpact = Instantiate(bulletImpactPrefab, hit.point, hit.collider.transform.localRotation);
             bulletImpact.transform.SetParent(hit.collider.transform);

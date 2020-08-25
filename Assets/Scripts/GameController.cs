@@ -5,7 +5,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private Text _fpsText;
     [SerializeField] private float _hudRefreshRate = 1f;
-    [SerializeField] int targetFramerate = 60;
+    [SerializeField] int targetFramerate = 0;
     private float _timer;
 
 
