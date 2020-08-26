@@ -194,9 +194,10 @@ GameObject:
   - component: {fileID: 1169770373863107129}
   - component: {fileID: 1169770373863107128}
   - component: {fileID: 2136474985}
+  - component: {fileID: 7169640218509253504}
   m_Layer: 10
   m_Name: Turret 1
-  m_TagString: Turret
+  m_TagString: Enemy
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -343,9 +344,6 @@ MonoBehaviour:
   animator: {fileID: 6660458238358744405}
   barrelAnimator: {fileID: 0}
   turretSound: {fileID: 2136474985}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 512
   turretHealth: 100
 --- !u!82 &2136474985
 AudioSource:
@@ -443,6 +441,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7169640218509253504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7389887703230976923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcfb472d71c2b47468095c8013c2211e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8567118375497123191
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,30 +65,29 @@ public class PlayerMovement : MonoBehaviour
 
     void AnimationControl()
     {
+        print(walking);
         if(running || walking)
         {
-            if (running)
+            if(playerController.playerHealth < 50)
             {
-                if (playerController.playerHealth < 9) { }
-                else
+                walkAnimator.speed = 0.666f;
+                footSteps.pitch = 0.666f;
+            }
+            else
+            {
+                if(running)
                 {
                     walkAnimator.speed = 2f;
                     footSteps.pitch = 2f;
                 }
-            }
-            else if (walking)
-            {
-                if (playerController.playerHealth < 9)
-                {
-                    walkAnimator.speed = 0.666f;
-                    footSteps.pitch = 0.666f;
-                }
-                else
+                else if(walking)
                 {
                     walkAnimator.speed = 1f;
                     footSteps.pitch = 1f;
                 }
             }
+
+
 
             walkAnimator.SetBool("isWalking", true);
             if (!footSteps.isPlaying)

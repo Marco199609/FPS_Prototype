@@ -15,7 +15,7 @@ public class WeaponShoot : MonoBehaviour
     public Ray shootRay;    //Set in WeaponAim
     public bool shooting, autoModeOn, isAutoWeapon;
     float automaticFireRate, aimTime = 0.3f;
-    int currentAmmo;
+    int currentAmmo, weaponRange;
 
     void SetVariables()
     {
@@ -44,6 +44,8 @@ public class WeaponShoot : MonoBehaviour
             aimPoint = currentWeapon.aimPoint;
         if (bulletImpactPrefab == null)
             bulletImpactPrefab = weaponController.bulletImpactPrefab;
+        if (weaponRange == 0 || weaponController.weaponChanging)
+            weaponRange = currentWeapon.rangeInMeters;
     }
 
     private void FixedUpdate()
@@ -114,17 +116,17 @@ public class WeaponShoot : MonoBehaviour
         weaponSounds.shootSound.pitch = Random.Range(0.9f, 1.2f);
         weaponSounds.shootSound.Play();
 
-        if (Physics.Raycast(shootRay, out hit, 50))
+        if (Physics.Raycast(shootRay, out hit, weaponRange))
         {
             GameObject bulletImpact = Instantiate(bulletImpactPrefab, hit.point, hit.collider.transform.localRotation);
             bulletImpact.transform.SetParent(hit.collider.transform);
             Destroy(bulletImpact, 10f);
 
-            if (hit.collider.tag == "Turret")
+            if (hit.collider.tag == "Enemy")
             {
-                hit.collider.GetComponentInParent<Turret>().turretHealth -= currentWeapon.damage;
+                hit.collider.GetComponentInParent<EnemyHealth>().health -= currentWeapon.damage;
 
-                if(hit.collider.GetComponentInParent<Turret>().turretHealth <= 0)
+                if(hit.collider.GetComponentInParent<EnemyHealth>().health <= 0)
                 {
                     weaponController.killEnemiesAmmo--;
 

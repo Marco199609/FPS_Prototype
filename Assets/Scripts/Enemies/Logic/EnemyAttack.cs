@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-
-    public Transform laserSpawn;
-
     public float sphereRadius;
     public float distance;
 
@@ -15,8 +12,7 @@ public class EnemyAttack : MonoBehaviour
 
     void FixedUpdate()
     {
-        //SetVariables();
-        //LaserControl();
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -24,7 +20,6 @@ public class EnemyAttack : MonoBehaviour
         if(other.tag == "Player")
         {
             enemyLight.GetComponent<Light>().color = Color.red;
-            enemyLight.GetComponent<VLight>().colorTint = enemyLight.GetComponent<Light>().color;
             attacking = true;
         }
     }
@@ -32,11 +27,11 @@ public class EnemyAttack : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            enemyLight.GetComponent<Light>().color = Color.white;
-            enemyLight.GetComponent<VLight>().colorTint = enemyLight.GetComponent<Light>().color;
+            enemyLight.GetComponent<Light>().color = Color.white;                                                                                                      
             attacking = false;
-        }
+        }                       
     }
-
+                        
 
 }
+                                                                                                                                                                                                                                                                          

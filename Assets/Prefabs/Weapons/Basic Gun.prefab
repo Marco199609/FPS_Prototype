@@ -6342,6 +6342,7 @@ MonoBehaviour:
   currentAmmo: 20
   availableAmmo: 20
   damage: 10
+  rangeInMeters: 50
   meshAnimator: {fileID: 7318280232485908250}
   parentAnimator: {fileID: 7318280231460084619}
   aimPoint: {fileID: 9040663804185466340}

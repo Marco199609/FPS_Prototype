@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public int ammoCapacity, currentAmmo, availableAmmo, damage;
+    public int ammoCapacity, currentAmmo, availableAmmo, damage, rangeInMeters;
     public Animator meshAnimator, parentAnimator;
     public Transform aimPoint;
     public GameObject muzzleFlash;

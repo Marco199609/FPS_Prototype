@@ -7,6 +7,8 @@ TagManager:
   - FxTemporaire
   - Turret
   - WeaponController
+  - Path
+  - Enemy
   layers:
   - Default
   - TransparentFX

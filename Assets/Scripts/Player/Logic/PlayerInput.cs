@@ -47,14 +47,14 @@ public class PlayerInput : MonoBehaviour
             }
             else
             {
-                playerMovement.running = true;
+                playerMovement.walking = true;
                 playerMovement.running = false;
             }
         }
 
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
-            playerMovement.running = false;
+            playerMovement.walking = false;
             playerMovement.running = false;
         }
 
