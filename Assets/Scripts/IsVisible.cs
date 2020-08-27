@@ -9,33 +9,35 @@ public class IsVisible : MonoBehaviour
     bool isVisible = true;
     Vector3 direction;
     int maxRange = 200;
+    GameObject player;
     MonoBehaviour[] scripts;
 
 
     void Start()
     {
-        scripts = gameObject.GetComponents<MonoBehaviour>();        //Gets scripts from gameobject
+        scripts = gameObject.GetComponents<MonoBehaviour>();                                //Gets scripts from gameobject
+        player = GameObject.FindWithTag("Player");
     }
 
     void Update()
     {
-        StartCoroutine(ActivateOrDeactivateScripts(2f));        //Update coroutine every x seconds
+        StartCoroutine(ActivateOrDeactivateScripts(2f));                                    //Update coroutine every x seconds
     }
 
 
 
     IEnumerator ActivateOrDeactivateScripts(float waitTime)
     {
-        direction = gameObject.transform.position - Camera.main.transform.position;
+        direction = gameObject.transform.position - player.transform.position;              //finds direction from player to object  
 
-        if (direction.sqrMagnitude < maxRange * maxRange)
+        if (direction.sqrMagnitude < maxRange * maxRange)                                   //Finds distance from player to object
         {
             isVisible = true;
         }
         else
             isVisible = false;
 
-        foreach (MonoBehaviour script in scripts)                   //enables or disables scripts depending on the distance from player
+        foreach (MonoBehaviour script in scripts)                                           //enables or disables scripts depending on the distance from player
         {
             if (!isVisible && script != this)
                 script.enabled = false;
@@ -44,8 +46,4 @@ public class IsVisible : MonoBehaviour
         }
         yield return new WaitForSeconds(waitTime);
     }
-
-
-
-
 }

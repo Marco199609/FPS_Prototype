@@ -20,7 +20,6 @@ public class Turret : MonoBehaviour
     void Update()
     {
         Shoot();
-        HealthControl();
     }
 
     
@@ -81,16 +80,6 @@ public class Turret : MonoBehaviour
             }
         }
         else
-            lineRenderer.SetPosition(1, ray.origin + (ray.direction * 200));
-    }
-    void HealthControl()
-    {
-        if(turretHealth <= 0)
-        {
-            var explosion = Instantiate(finalExplosionPrefab, pivotPoint.transform.position, Quaternion.identity);
-            Instantiate(burnedTurretPrefab, pivotPoint.transform.position, pivotPoint.transform.rotation);
-            Destroy(explosion, 5f);
-            Destroy(gameObject);
-        }
+            lineRenderer.SetPosition(1, ray.origin + (ray.direction * 100));
     }
 }

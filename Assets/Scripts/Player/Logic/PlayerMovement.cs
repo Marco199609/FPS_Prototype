@@ -65,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
 
     void AnimationControl()
     {
-        print(walking);
         if(running || walking)
         {
             if(playerController.playerHealth < 50)

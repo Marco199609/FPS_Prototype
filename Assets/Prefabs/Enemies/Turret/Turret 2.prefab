@@ -570,8 +570,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6362458605086273670}
-  - component: {fileID: 2023458191018924252}
-  - component: {fileID: 2138529968}
   m_Layer: 10
   m_Name: Pivot
   m_TagString: Turret
@@ -596,38 +594,6 @@ Transform:
   m_Father: {fileID: 2310829250579890364}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -360, z: 0}
---- !u!95 &2023458191018924252
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3436326715853666170}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b75d75e2e672a1f41a0f4af89d4b6b6a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &2138529968
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3436326715853666170}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 165.71243, y: 209.33987, z: 396.8103}
-  m_Center: {x: 3.375572, y: -93.00314, z: 118.92387}
 --- !u!1 &6614734707219713985
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,8 +604,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2310829250579890364}
   - component: {fileID: 6358217672059472134}
-  - component: {fileID: 139496968752079234}
   - component: {fileID: 1048969508}
+  - component: {fileID: 3107798667065769712}
+  - component: {fileID: 4837283927864466301}
+  - component: {fileID: 4152912761214519923}
   m_Layer: 10
   m_Name: Turret 2
   m_TagString: Enemy
@@ -765,31 +733,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &139496968752079234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6614734707219713985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 254e538c95c31f541abfa56e3c04bac0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 6358217672059472134}
-  spawnPoint: {fileID: 2016729235336265304}
-  pivotPoint: {fileID: 3436326715853666170}
-  barrelExplosion: {fileID: 820057038}
-  finalExplosionPrefab: {fileID: 586008113463248656, guid: 96fd87ee647ca4f4bb8ee93f79b868e6,
-    type: 3}
-  burnedTurretPrefab: {fileID: 6614734707219713985, guid: 9d110f7eb9122cb43bc057bee839de42,
-    type: 3}
-  laserMaterial: {fileID: 2100000, guid: 594f91123fd706544832e66fb084fe5f, type: 2}
-  animator: {fileID: 2023458191018924252}
-  barrelAnimator: {fileID: 530617483}
-  turretSound: {fileID: 1048969508}
-  turretHealth: 100
 --- !u!82 &1048969508
 AudioSource:
   m_ObjectHideFlags: 0
@@ -886,6 +829,63 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3107798667065769712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6614734707219713985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0b7049a0cf922438d86ff26a671513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAIObject: 0
+  pathObjectsTag: 
+  pathToFollow: []
+  speed: 0
+  rotateSpeed: 0
+  minDirTimer: 0
+  maxDirTimer: 0
+  isStaticRotateObj: 1
+  rotationAxis: {x: 0, y: 1, z: 0}
+  health: 100
+  explosionPrefab: {fileID: 586008113477770876, guid: 96fd87ee647ca4f4bb8ee93f79b868e6,
+    type: 3}
+  burnedEnemy: {fileID: 6614734707219713985, guid: 9d110f7eb9122cb43bc057bee839de42,
+    type: 3}
+  enemyAnimator: {fileID: 0}
+  attackSound: {fileID: 1048969508}
+  muzzleFlash: {fileID: 820057038}
+  rayPlayerDetection: 1
+  lineRenderer: {fileID: 6358217672059472134}
+  spawnPoint: {fileID: 294501283357378520}
+--- !u!114 &4837283927864466301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6614734707219713985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11df26999d52d45438cee250d17c056a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &4152912761214519923
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6614734707219713985}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 130.90363, y: 82.15451, z: 207.34863}
+  m_Center: {x: 10.572433, y: -37.178112, z: 22.77069}
 --- !u!1001 &820024678
 PrefabInstance:
   m_ObjectHideFlags: 0

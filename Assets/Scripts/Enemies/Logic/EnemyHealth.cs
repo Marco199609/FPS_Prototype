@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -23,7 +24,6 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         SetVariables();
@@ -37,8 +37,15 @@ public class EnemyHealth : MonoBehaviour
         {
             var explosion = Instantiate(enemyData.explosionPrefab, transform.position, transform.rotation);
             var burnedEnemy = Instantiate(enemyData.burnedEnemy, transform.position, transform.rotation);
-            burnedEnemy.GetComponent<Rigidbody>().AddForce(transform.forward * 20, ForceMode.Impulse);
-            Destroy(burnedEnemy, 10f);
+
+            if(enemyData.isAIObject)
+            {
+                burnedEnemy.GetComponent<Rigidbody>().AddForce(transform.forward * 20, ForceMode.Impulse);
+                Destroy(burnedEnemy.GetComponent<Rigidbody>(), 5f);
+                Destroy(burnedEnemy.GetComponent<Collider>(), 6f);
+            }
+
+            burnedEnemy.transform.SetParent(gameObject.transform.parent);
             Destroy(explosion, 5f);
             Destroy(gameObject);
         }

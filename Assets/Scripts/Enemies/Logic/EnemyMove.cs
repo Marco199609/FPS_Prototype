@@ -13,7 +13,7 @@ public class EnemyMove : EnemyAI
             enemyData = GetComponent<EnemyData>();
         if (pathToFollow == null)
         {
-            pathToFollow = GameObject.FindGameObjectsWithTag("Path");
+            pathToFollow = GameObject.FindGameObjectsWithTag(enemyData.pathObjectsTag);
             enemyData.pathToFollow = pathToFollow;
         }
     }
