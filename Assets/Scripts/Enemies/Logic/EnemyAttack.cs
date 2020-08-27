@@ -9,12 +9,22 @@ public class EnemyAttack : EnemyPlayerDetection
     GameObject player;
     AudioSource attackSound;
     GameObject muzzleFlash;
+    EnemyMove enemyMove;
     //For use in case of ray detection
     LineRenderer lineRenderer;
     Material lineMaterial;
     Transform spawnPoint;
 
 
+    void SetVariables()
+    {
+        if(player == null)
+            player = GameObject.FindWithTag("Player");
+        if(attackSound == null)
+            attackSound = enemyData.attackSound;
+        if (enemyMove == null)
+            enemyMove = gameObject.GetComponent<EnemyMove>();
+    }
 
     private void Start()
     {
@@ -22,20 +32,26 @@ public class EnemyAttack : EnemyPlayerDetection
         lineRenderer = enemyData.lineRenderer;
         lineMaterial = lineRenderer.material;
         spawnPoint = enemyData.spawnPoint;
-        player = GameObject.FindWithTag("Player");
-        attackSound = enemyData.attackSound;
     }
 
 
     private void FixedUpdate()
     {
+        SetVariables();
+
+        if(playerDetected)
+            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+
         if (enemyData.rayPlayerDetection)
         {
             DetectionWithRays(lineRenderer, spawnPoint);
             AttackWithRays();
         }
+        else
+        {
+            AttackWithBulletsOrLights();
+        }
     }
-
 
     void AttackWithRays()
     {
@@ -43,7 +59,6 @@ public class EnemyAttack : EnemyPlayerDetection
         {
             lineMaterial.SetColor("_EmissionColor", Color.red);
 
-            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y,player.transform.position.z));
 
             if (!attackSound.isPlaying)
                 attackSound.Play();
@@ -53,39 +68,36 @@ public class EnemyAttack : EnemyPlayerDetection
 
             player.GetComponent<PlayerController>().playerHealth -= Time.deltaTime * 8;
         }
-    }
-
-
-
-    /*
-    public float sphereRadius;
-    public float distance;
-
-    public GameObject enemyLight;
-    public bool attacking;
-
-    void FixedUpdate()
-    {
-
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.tag == "Player")
+        else
         {
-            enemyLight.GetComponent<Light>().color = Color.red;
-            attacking = true;
+            lineMaterial.SetColor("_EmissionColor", Color.green);
+
+            if (attackSound.isPlaying)
+                attackSound.Stop();
+
+            if (muzzleFlash != null)
+                muzzleFlash.SetActive(false);
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            enemyLight.GetComponent<Light>().color = Color.white;                                                                                                      
-            attacking = false;
-        }                       
-    }
-          */
 
+    void AttackWithBulletsOrLights()
+    {
+        if(playerDetected)
+        {
+            if (!attackSound.isPlaying)
+                attackSound.Play();
+            enemyData.enemyLight.GetComponent<Light>().color = Color.red;
+            enemyData.enemyLight.GetComponent<VLight>().colorTint = Color.red;
+            //enemyMove.enabled = false;
+        }
+        else
+        {
+            if (attackSound.isPlaying)
+                attackSound.Stop();
+            enemyData.enemyLight.GetComponent<Light>().color = Color.white;
+            enemyData.enemyLight.GetComponent<VLight>().colorTint = Color.white;
+            //enemyMove.enabled = true;
+        }
+    }
 }
                                                                                                                                                                                                                                                                           

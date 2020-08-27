@@ -410,12 +410,13 @@ MonoBehaviour:
     type: 3}
   burnedEnemy: {fileID: 7389887703230976923, guid: bea450c286cc2924a93cee0ae35538e7,
     type: 3}
-  enemyAnimator: {fileID: 0}
   attackSound: {fileID: 2136474985}
   muzzleFlash: {fileID: 6513344048557725915}
+  enemyAnimator: {fileID: 0}
   rayPlayerDetection: 1
   lineRenderer: {fileID: 1169770373863107129}
   spawnPoint: {fileID: 1342072865}
+  enemyLight: {fileID: 0}
 --- !u!114 &2115575520404287688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,7 +812,8 @@ PrefabInstance:
       propertyPath: ShapeModule.arc.value
       value: 180
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 7075bd5fe1480184695a32611c15da57, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7075bd5fe1480184695a32611c15da57, type: 3}
 --- !u!1 &6513344048557725915 stripped
 GameObject:

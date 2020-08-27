@@ -29,10 +29,10 @@ Material:
     - _EnableFog: 1
     - _EnableRotation: 0
     - _Exposure: 1
-    - _FogFill: 0.05
-    - _FogHeight: 0.25
-    - _FogIntensity: 0.89
-    - _FogSmoothness: 0.01
+    - _FogFill: 0
+    - _FogHeight: 0.661
+    - _FogIntensity: 0.422
+    - _FogSmoothness: 0.273
     - _Fogg: 1
     - _IsStandardPipeline: 1
     - _Rotation: 0
@@ -40,4 +40,4 @@ Material:
     - _Rotationn: 1
     - _SkyboxExtended: 1
     m_Colors:
-    - _TintColor: {r: 0, g: 0.008267815, b: 0.18867922, a: 1}
+    - _TintColor: {r: 0.047659304, g: 0.050930094, b: 0.1981132, a: 1}

@@ -43,7 +43,7 @@ public class PlayerRotation : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -80, 80);
 
-        transform.Rotate(Vector3.up * mouseX * mouseSensitivity);
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation * mouseSensitivity, 0, 0);
+        transform.Rotate(Vector3.up * mouseX);
+        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
     }
 }

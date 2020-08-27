@@ -1770,7 +1770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoCapacity: 6
   currentAmmo: 6
-  availableAmmo: 6
+  availableAmmo: 32
   damage: 30
   rangeInMeters: 100
   meshAnimator: {fileID: 2109566078}

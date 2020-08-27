@@ -754,7 +754,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 100
+  MaxDistance: 300
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -855,12 +855,13 @@ MonoBehaviour:
     type: 3}
   burnedEnemy: {fileID: 6614734707219713985, guid: 9d110f7eb9122cb43bc057bee839de42,
     type: 3}
-  enemyAnimator: {fileID: 0}
   attackSound: {fileID: 1048969508}
   muzzleFlash: {fileID: 820057038}
+  enemyAnimator: {fileID: 0}
   rayPlayerDetection: 1
   lineRenderer: {fileID: 6358217672059472134}
   spawnPoint: {fileID: 294501283357378520}
+  enemyLight: {fileID: 0}
 --- !u!114 &4837283927864466301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,7 +1102,8 @@ PrefabInstance:
       propertyPath: ShapeModule.arc.value
       value: 180
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 7075bd5fe1480184695a32611c15da57, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7075bd5fe1480184695a32611c15da57, type: 3}
 --- !u!1 &820057038 stripped
 GameObject:

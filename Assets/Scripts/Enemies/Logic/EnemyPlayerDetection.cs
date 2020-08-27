@@ -37,9 +37,29 @@ public class EnemyPlayerDetection : MonoBehaviour
             lineRenderer.SetPosition(1, ray.origin + (ray.direction * 200));
     }
 
-
-    public void DetectionWithColliders()
+    private void OnTriggerStay(Collider other)
     {
+        if (other.tag == "Player")
+        {
+            RaycastHit hit;
 
+            if(Physics.Raycast(transform.position, other.transform.position - transform.position, out hit, 500))                    //Checks if player out of drone view
+            {
+                if (hit.collider == other)
+                {
+                    playerDetected = true;
+                }
+                else
+                    playerDetected = false;
+            }
+
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            playerDetected = false;
+        }
     }
 }

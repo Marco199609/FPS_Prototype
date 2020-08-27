@@ -20,14 +20,16 @@ public class EnemyData : MonoBehaviour
     public ParticleSystem explosionPrefab;
     public GameObject burnedEnemy;
 
-    public Animator enemyAnimator;
-
     [Header("Effects")]
     public AudioSource attackSound;
     public GameObject muzzleFlash;
+    public Animator enemyAnimator;
 
-    [Header("Configs for enemy attack")]
+    [Header("Use if attacking with rays")]
     public bool rayPlayerDetection;
     public LineRenderer lineRenderer;
     public Transform spawnPoint;
+
+    [Header("Use if attacking without rays")]
+    public Light enemyLight;
 }
