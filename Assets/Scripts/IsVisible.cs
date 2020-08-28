@@ -8,7 +8,7 @@ public class IsVisible : MonoBehaviour
 {
     bool isVisible = true;
     Vector3 direction;
-    int maxRange = 200;
+    public int maxRange = 200;
     GameObject player;
     MonoBehaviour[] scripts;
 

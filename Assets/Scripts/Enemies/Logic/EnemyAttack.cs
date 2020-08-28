@@ -88,7 +88,6 @@ public class EnemyAttack : EnemyPlayerDetection
                 attackSound.Play();
             enemyData.enemyLight.GetComponent<Light>().color = Color.red;
             enemyData.enemyLight.GetComponent<VLight>().colorTint = Color.red;
-            //enemyMove.enabled = false;
         }
         else
         {
@@ -96,7 +95,6 @@ public class EnemyAttack : EnemyPlayerDetection
                 attackSound.Stop();
             enemyData.enemyLight.GetComponent<Light>().color = Color.white;
             enemyData.enemyLight.GetComponent<VLight>().colorTint = Color.white;
-            //enemyMove.enabled = true;
         }
     }
 }

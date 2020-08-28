@@ -11,18 +11,9 @@ public class EnemyPlayerDetection : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(spawnPoint.transform.position, spawnPoint.transform.forward);
         lineRenderer.SetPosition(0, ray.origin);
-        lineRenderer.SetPosition(2, ray.origin);
-        lineRenderer.SetPosition(4, ray.origin);
-        lineRenderer.SetPosition(6, ray.origin);
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out hit, 200))
         {
-            float randomRays = Random.Range(0.5f, 1f);
-            float randomRays2 = Random.Range(0.5f, 1f);
-
-            lineRenderer.SetPosition(1, new Vector3(hit.point.x - randomRays2, hit.point.y - randomRays, hit.point.z));
-            lineRenderer.SetPosition(3, new Vector3(hit.point.x - randomRays, hit.point.y + randomRays2, hit.point.z));
-            lineRenderer.SetPosition(5, new Vector3(hit.point.x + randomRays2, hit.point.y - randomRays, hit.point.z));
-            lineRenderer.SetPosition(7, new Vector3(hit.point.x, hit.point.y - randomRays, hit.point.z));
+            lineRenderer.SetPosition(1, hit.point);
 
             if (hit.collider.tag == "Player")
             {

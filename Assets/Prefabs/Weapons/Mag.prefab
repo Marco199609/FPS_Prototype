@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1503861129
 Transform:
   m_ObjectHideFlags: 0
@@ -174,9 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc4ca6245589944aa036101a8d6fba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magCapacity: 0
   randomCapacity: 0
   enableTimer: 1
+  magCapacity: 0
   rotateAngle: {x: 0, y: 2, z: 0}
   mesh: {fileID: 4960262388202745234}
   magSound: {fileID: 1503861127}
@@ -204,7 +204,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 5.267887, z: 1}
-  m_Center: {x: 0, y: -2.1339436, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4960262388202842930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,7 +218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: e4961a9972e16ef48bf11f65ab2ca01d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e4961a9972e16ef48bf11f65ab2ca01d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -226,7 +226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e4961a9972e16ef48bf11f65ab2ca01d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6000454
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e4961a9972e16ef48bf11f65ab2ca01d, type: 3}
       propertyPath: m_LocalPosition.z

@@ -672,7 +672,7 @@ MonoBehaviour:
   parentAnimator: {fileID: 6690936295017702192}
   aimPoint: {fileID: 1800492204}
   muzzleFlash: {fileID: 6437763105241332897}
-  autoModeOn: 0
+  autoModeOn: 1
   isAutoWeapon: 1
   fireRate: 850
   reloadTime: 2.2

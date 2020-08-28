@@ -608,6 +608,7 @@ GameObject:
   - component: {fileID: 3107798667065769712}
   - component: {fileID: 4837283927864466301}
   - component: {fileID: 4152912761214519923}
+  - component: {fileID: 908522941239697882}
   m_Layer: 10
   m_Name: Turret 2
   m_TagString: Enemy
@@ -670,12 +671,6 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   m_Parameters:
@@ -887,6 +882,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 130.90363, y: 82.15451, z: 207.34863}
   m_Center: {x: 10.572433, y: -37.178112, z: 22.77069}
+--- !u!114 &908522941239697882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6614734707219713985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcfb472d71c2b47468095c8013c2211e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRange: 100
 --- !u!1001 &820024678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1207,6 +1215,22 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 54593c27ebab7214ba4a6b02aaacb84d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 54593c27ebab7214ba4a6b02aaacb84d, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 54593c27ebab7214ba4a6b02aaacb84d, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 54593c27ebab7214ba4a6b02aaacb84d, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 54593c27ebab7214ba4a6b02aaacb84d, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 54593c27ebab7214ba4a6b02aaacb84d, type: 3}

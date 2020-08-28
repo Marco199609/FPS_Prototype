@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = targetFramerate;
+        Physics.gravity = new Vector3(0, -29.43f, 0);
     }
 
     private void Update()
