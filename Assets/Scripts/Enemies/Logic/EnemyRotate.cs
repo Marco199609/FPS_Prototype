@@ -11,6 +11,7 @@ public class EnemyRotate : MonoBehaviour
         enemyData = gameObject.GetComponent<EnemyData>();
         enemyPlayerDetection = gameObject.GetComponent<EnemyPlayerDetection>();
         rotationAxis = enemyData.rotationAxis;
+        transform.rotation = Quaternion.Euler(transform.rotation.x, Random.Range(0, 360), transform.rotation.z);
     }
 
     // Update is called once per frame

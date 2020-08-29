@@ -880,8 +880,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 130.90363, y: 82.15451, z: 207.34863}
-  m_Center: {x: 10.572433, y: -37.178112, z: 22.77069}
+  m_Size: {x: 130.90363, y: 201.21889, z: 294.0094}
+  m_Center: {x: 10.572433, y: -96.7103, z: -20.559692}
 --- !u!114 &908522941239697882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -894,7 +894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcfb472d71c2b47468095c8013c2211e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRange: 100
+  maxRange: 150
 --- !u!1001 &820024678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1218,19 +1218,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 54593c27ebab7214ba4a6b02aaacb84d, type: 3}
       propertyPath: m_CastShadows
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 54593c27ebab7214ba4a6b02aaacb84d, type: 3}
       propertyPath: m_ReceiveShadows
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 54593c27ebab7214ba4a6b02aaacb84d, type: 3}
       propertyPath: m_LightProbeUsage
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 54593c27ebab7214ba4a6b02aaacb84d, type: 3}
       propertyPath: m_ReflectionProbeUsage
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 54593c27ebab7214ba4a6b02aaacb84d, type: 3}

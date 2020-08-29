@@ -6341,8 +6341,8 @@ MonoBehaviour:
   ammoCapacity: 20
   currentAmmo: 20
   availableAmmo: 160
-  damage: 10
-  rangeInMeters: 50
+  damage: 20
+  rangeInMeters: 200
   meshAnimator: {fileID: 7318280232485908250}
   parentAnimator: {fileID: 7318280231460084619}
   aimPoint: {fileID: 9040663804185466340}
@@ -7000,7 +7000,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9040663804185466343}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0521, z: -0.0647}
+  m_LocalPosition: {x: 0.00007, y: 0.04924, z: 0.1086}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9041393811308012854}
