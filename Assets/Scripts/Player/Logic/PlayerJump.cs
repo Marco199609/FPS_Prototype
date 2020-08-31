@@ -7,10 +7,10 @@ public class PlayerJump : MonoBehaviour
     PlayerController playerController;
     PlayerMovement playerMovement;
     Transform groundCheck;
-    LayerMask groundMask;
+    [SerializeField] LayerMask groundMask;
     CharacterController characterController;
     float groundDistance, jumpHeight, gravity;
-    bool isGrounded;
+    [SerializeField] bool isGrounded;
     public bool jumping;
     Vector3 velocity;
 
@@ -25,6 +25,7 @@ public class PlayerJump : MonoBehaviour
             groundCheck = playerController.groundCheck;
         if (groundMask != playerController.groundMask)
             groundMask = playerController.groundMask;
+        print(playerController.groundMask.value);
         if (groundDistance == 0)
             groundDistance = playerController.groundDistance;
         if (jumpHeight == 0)
@@ -49,6 +50,7 @@ public class PlayerJump : MonoBehaviour
     void Gravity()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
         if (isGrounded && velocity.y < 0)
         {
             playerMovement.velocity.y = -2f;

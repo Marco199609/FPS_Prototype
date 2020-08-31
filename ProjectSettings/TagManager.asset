@@ -10,6 +10,7 @@ TagManager:
   - Path
   - Enemy
   - DronePath
+  - Elevator
   layers:
   - Default
   - TransparentFX
