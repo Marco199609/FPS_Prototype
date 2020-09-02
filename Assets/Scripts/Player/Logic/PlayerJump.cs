@@ -25,7 +25,6 @@ public class PlayerJump : MonoBehaviour
             groundCheck = playerController.groundCheck;
         if (groundMask != playerController.groundMask)
             groundMask = playerController.groundMask;
-        print(playerController.groundMask.value);
         if (groundDistance == 0)
             groundDistance = playerController.groundDistance;
         if (jumpHeight == 0)
