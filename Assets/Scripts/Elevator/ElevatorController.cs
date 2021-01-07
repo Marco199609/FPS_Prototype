@@ -49,8 +49,8 @@ public class ElevatorController : MonoBehaviour
         }
         else
         {
-            door1.transform.localPosition = Vector3.Lerp(door1.transform.localPosition, new Vector3(door1.transform.localPosition.x, door1.transform.localPosition.y, 0.119f), 0.03f);
-            door2.transform.localPosition = Vector3.Lerp(door2.transform.localPosition, new Vector3(door2.transform.localPosition.x, door2.transform.localPosition.y, 2.889f), 0.03f);
+            door1.transform.localPosition = Vector3.Lerp(door1.transform.localPosition, new Vector3(door1.transform.localPosition.x, door1.transform.localPosition.y, 0.114f), 0.03f);
+            door2.transform.localPosition = Vector3.Lerp(door2.transform.localPosition, new Vector3(door2.transform.localPosition.x, door2.transform.localPosition.y, 2.904f), 0.03f);
         }
 
     }
