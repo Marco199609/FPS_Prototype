@@ -61,8 +61,17 @@ public class ElevatorController : MonoBehaviour
         if(!openDoors && gameController.playerInElevator)
         {
             elevatorTimer -= Time.deltaTime;
-            if(elevatorTimer <= gameController.elevatorTimer - 4)
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 19.13f, transform.position.z), 0.02f);
+            if(gameController.objectives[1] != null)
+            {
+                if(elevatorTimer <= gameController.elevatorTimer - 4)
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 19.13f, transform.position.z), 0.02f);
+            }
+            else
+            {
+                if(elevatorTimer <= gameController.elevatorTimer - 4)
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 29.3f, transform.position.z), 0.02f);
+            }
+
 
             if(elevatorTimer <= 0)
             {

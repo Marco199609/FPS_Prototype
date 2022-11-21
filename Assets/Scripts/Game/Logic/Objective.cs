@@ -14,13 +14,13 @@ public class Objective : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (gameController.getObjective)
-            {
-                gameController.getObjective = false;
-                gameController.objectiveCompleted = true;
+            //if (gameController.getObjective)
+            //{
+              //  gameController.getObjective = false;
+               // gameController.objectiveCompleted = true;
                 gameController.openElevatorDoors = true;
                 Destroy(gameObject);
-            }
+            //}
         }
         else
             gameController.getObjective = false;

@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     public bool[] levelActive;
 
     [Header("Objectives Control")]
-    [SerializeField] GameObject[] objectives;
+    public GameObject[] objectives;
     public bool objectiveCompleted;
     public bool getObjective;
 

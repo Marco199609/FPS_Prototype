@@ -14,10 +14,10 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        LevelControl();
+     //   LevelControl();
     }
 
-    void LevelControl()
+  /*  void LevelControl()
     {
         for (int i = 0; i < gameController.levels.Length; i++)
         {
@@ -26,5 +26,5 @@ public class LevelController : MonoBehaviour
             else
                 gameController.levels[i].SetActive(false);
         }
-    }
+    }*/
 }

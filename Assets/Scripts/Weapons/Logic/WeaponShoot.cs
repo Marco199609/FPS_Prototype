@@ -28,8 +28,10 @@ public class WeaponShoot : MonoBehaviour
         if (weaponReload == null)
             weaponReload = gameObject.GetComponent<WeaponReload>();
 
-        autoModeOn = currentWeapon.autoModeOn;
-        currentAmmo = currentWeapon.currentAmmo;
+        if(currentWeapon != null)
+        {
+                        autoModeOn = currentWeapon.autoModeOn;
+            currentAmmo = currentWeapon.currentAmmo;
 
         if (weaponController.weaponChanging)
             isAutoWeapon = currentWeapon.isAutoWeapon;
@@ -46,6 +48,7 @@ public class WeaponShoot : MonoBehaviour
             bulletImpactPrefab = weaponController.bulletImpactPrefab;
         if (weaponRange == 0 || weaponController.weaponChanging)
             weaponRange = currentWeapon.rangeInMeters;
+        }
     }
 
     private void FixedUpdate()
